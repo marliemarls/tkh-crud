@@ -7,8 +7,8 @@
 
 ### Built With
 
-* [![Express][Express.js]][Express-url]
-* [![Nodemon][Nodemon.js]][Nodemon-url]
+* [Express-url]
+* [Nodemon-url]
 
 
 
@@ -34,9 +34,10 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install express --save
    ```
+3. Install Nodemon
    ```sh
-  npm install nodemon --save-dev
-  ``` 
+   npm install nodemon --save-dev
+   ``` 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
