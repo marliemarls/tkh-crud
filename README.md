@@ -9,6 +9,7 @@
 
 * [Express-url]
 * [Nodemon-url]
+* [MongoDB-url]
 
 
 
@@ -38,8 +39,12 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install nodemon --save-dev
    ``` 
-
+4. Install MongoDB
+  ```sh
+  npm install mongodb --save
+  ```
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [Express-url]: https://expressjs.com/
 [Nodemon-url]: https://www.npmjs.com/package/nodemon
+[MongoDB-url]: https://www.mongodb.com/
