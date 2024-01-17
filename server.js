@@ -47,7 +47,29 @@ app.post('/users', (req, res) => {
 	console.log(req.body);
 })
 
-
+app.put('/users', (req, res) => {
+    usersCollection
+        .findOneAndUpdate(
+            { username: req.body.username },
+            {
+                $set: {
+                    username: req.body.username,
+                    password: req.body.password,
+                },
+            },
+            {
+                upsert: false,
+            },
+            {
+                returnNewDocument: true
+            }
+        )
+        .then(result => {
+            res.json('Success')
+            return res
+        })
+        .catch(error => console.error(error))
+})
 
 app.listen(PORT, function() {
     console.log(`Server is live! Listening at port ${PORT}`);
