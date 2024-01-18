@@ -1,4 +1,25 @@
 const update = document.getElementById('update-button');
+const deleteButton = document.getElementById('delete-button');
+
+deleteButton.addEventListener('click', () => {
+    const username = document.getElementById("username").value;
+
+    fetch('/users', {
+        method: 'delete',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username: username
+        }),
+    })
+    .then(res => {
+        console.log('deleted')
+        if (res.ok) return res.json();
+    })
+    .then(res =>{
+        window.location.reload(true)
+    })
+})
+
 
 update.addEventListener('click', _ => {
     const username = document.getElementById("username").value;

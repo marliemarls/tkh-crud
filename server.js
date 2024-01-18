@@ -30,7 +30,7 @@ MongoClient.connect(process.env.MONGO_URI)
         app.post('/users', (req, res) => {
         usersCollection
         .insertOne(req.body)
-        .then(res => {
+        .then(result => {
             res.redirect('/');
         })
         .catch(error => console.log(error))
@@ -71,7 +71,22 @@ app.put('/users', (req, res) => {
         .catch(error => console.error(error))
 })
 
+app.delete('/users', (req, res) => {
+    usersCollection
+        .deleteOne(
+            { username: req.body.username }
+        )
+        .then(result => {
+            console.log(`Deleted ${req.body.username}`)
+            console.log(result);
+            res.json('Deleted user')
+        })
+        .catch(error => console.error(error))
+})
+
+
 app.listen(PORT, function() {
     console.log(`Server is live! Listening at port ${PORT}`);
 
 })
+
