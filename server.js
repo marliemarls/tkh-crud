@@ -24,7 +24,7 @@ MongoClient.connect(process.env.MONGO_URI)
 				res.render('index.ejs', { usersCollection: results })
 			})
 			.catch(error => console.error(error))
-	})
+})
 
 	app.post('/users', (req, res) => {
 		usersCollection
@@ -33,37 +33,30 @@ MongoClient.connect(process.env.MONGO_URI)
             res.redirect('/');
         })
         .catch(error => console.log(error))
-	 })
 })
-.catch(error => console.error(error))
-
-
-app.post('/users', (req, res) => {
-	console.log(req.body);
-})
-
-app.put('/users', (req, res) => {
-    usersCollection
-        .findOneAndUpdate(
-            { username: req.body.username },
-            {
-                $set: {
-                    username: req.body.username,
-                    password: req.body.password,
+    
+    app.put('/users', (req, res) => {
+        usersCollection
+            .findOneAndUpdate(
+                { username: req.body.username },
+                {
+                    $set: {
+                        username: req.body.username,
+                        password: req.body.password,
+                    },
                 },
-            },
-            {
-                upsert: false,
-            },
-            {
-                returnNewDocument: true
-            }
-        )
-        .then(result => {
-            res.json('Success')
-            return res
-        })
-        .catch(error => console.error(error))
+                {
+                    upsert: false,
+                },
+                {
+                    returnNewDocument: true
+                }
+            )
+            .then(result => {
+                res.json('Success')
+                return res
+            })
+            .catch(error => console.error(error))
 })
 
 app.delete('/users', (req, res) => {
@@ -78,6 +71,11 @@ app.delete('/users', (req, res) => {
         })
         .catch(error => console.error(error))
 }) 
+
+})
+.catch(error => console.error(error))
+
+
 
 app.listen(PORT, function() {
 	console.log(`Server is live! Listening at port ${PORT}`);

@@ -7,7 +7,6 @@
     </head>
     <body>
         <h1>Enter user</h1>
-        <button id="update-button">Replace password</button>
         <form action="/users" method="POST">
             <input type="text" id="username" placeholder="New Username" name="username" />
             <input type="text" id="password" placeholder="New Password" name="password" />
@@ -15,7 +14,6 @@
             <button id="update-button">Replace password</button>
             <button id="delete-button">delete user</button>
         </form>
-        <button id="delete-button">delete user</button> 
         
         <ul class="users">
             <% for(var i=0; i < usersCollection.length; i++) {%>
