@@ -13,51 +13,47 @@ app.use(bodyParser.json());
 
 MongoClient.connect(process.env.MONGO_URI)
 .then(client => {
-	const db = client.db('practice');
-	const usersCollection = db.collection('users');
+const db = client.db('practice');
+const usersCollection = db.collection('users');
 
-	app.get('/', (req, res) => {
-		usersCollection
-			.find()
-			.toArray()
-			.then(results => {
-				res.render('index.ejs', { usersCollection: results })
-			})
-			.catch(error => console.error(error))
-})
+app.get('/', (req, res) => {
+	usersCollection
+		.find()
+		.toArray()
+		.then(results => {
+			res.render('index.ejs', { usersCollection: results })
+}) .catch(error => console.error(error))})
 
-	app.post('/users', (req, res) => {
-		usersCollection
+
+
+app.post('/users', (req, res) => {
+	usersCollection
         .insertOne(req.body)
         .then(result => {
             res.redirect('/');
-        })
-        .catch(error => console.log(error))
-})
+}) .catch(error => console.log(error))})
     
-    app.put('/users', (req, res) => {
-        usersCollection
-            .findOneAndUpdate(
-                { username: req.body.username },
-                {
-                    $set: {
-                        username: req.body.username,
-                        password: req.body.password,
-                    },
+app.put('/users', (req, res) => {
+    usersCollection
+        .findOneAndUpdate(
+        { username: req.body.username },
+           {
+                $set: {
+                username: req.body.username,
+                password: req.body.password,
                 },
-                {
-                    upsert: false,
-                },
-                {
-                    returnNewDocument: true
-                }
-            )
-            .then(result => {
-                res.json('Success')
-                return res
-            })
-            .catch(error => console.error(error))
-})
+            },
+        {
+            upsert: false,
+        },
+        {
+            returnNewDocument: true
+        }
+) .then(result => {
+    res.json('Success')
+    return res
+}) .catch(error => console.error(error))})
+
 
 app.delete('/users', (req, res) => {
     usersCollection
@@ -68,11 +64,9 @@ app.delete('/users', (req, res) => {
         console.log(`Deleted ${req.body.username}`)
         console.log(result);
             res.json('Deleted user')
-        })
-        .catch(error => console.error(error))
-}) 
+}) .catch(error => console.error(error))}) 
 
-})
+}) 
 .catch(error => console.error(error))
 
 
