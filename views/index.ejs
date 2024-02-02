@@ -3,33 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My APP</title>
+        <title>Document</title>
     </head>
     <body>
         <h1>Enter user</h1>
         <form action="/users" method="POST">
-            <input type="text" id="username" placeholder="New Username" name="username" />
-            <input type="text" id="password" placeholder="New Password" name="password" />
+            <input type="text" id="username" placeholder="Username" name="username" />
+            <input type="password" id="password" placeholder="Password" name="password" />
             <button type="submit">Submit</button>
-            <button id="update-button">Replace password</button>
-            
         </form>
+        <button id="update-button">Replace password</button>
         <button id="delete-button">delete user</button>
-        
         <ul class="users">
-            <% for(var i=0; i < usersCollection.length; i++) {%>
+            <% for(var i=0; i < body.users.length; i++) {%>
                 <li class="user">
                     <!-- Output name from the iterated user object -->
                     <span>
-                        <%= usersCollection[i].username %>
+                        <%= body.users[i].username %>
                     </span>:
                     <!-- Output quote from the iterated user object -->
                     <span>
-                        <%= usersCollection[i].password %>
+                        <%= body.users[i].password %>
                     </span>
                 </li>
                 <% } %>
         </ul>
-    <script src="/main.js"></script>
+        <script src="/main.js"></script>
     </body>
+
 </html>

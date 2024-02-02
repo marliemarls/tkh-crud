@@ -11,27 +11,64 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
+app.post('/users', (req, res) => {
+    const {username, password} = req.body;
+    prisma.user.create({
+        data: {
+            username,
+            password,
+            posts: {
+                create: {
+                    title: 'My first post',
+                    body: 'Lots of really interesting stuff',
+                },
+            },
+        }
+    })
+    .then(result => {
+        res.redirect('/');
+    })
+    .catch(error => {
+        // Handle errors
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    })  
+})
+
 MongoClient.connect(process.env.MONGO_URI)
 .then(client => {
 const db = client.db('practice');
 const usersCollection = db.collection('users');
 
-app.get('/', (req, res) => {
-	usersCollection
-		.find()
-		.toArray()
-		.then(results => {
-			res.render('index.ejs', { usersCollection: results })
-}) .catch(error => console.error(error))})
+app.get('/', async (req, res) => {
+    const body = { users: null, posts: null }    
+
+    const users = await prisma.user
+    .findMany()
+        .then(results => {
+            body.users = results;
+    })
+    .catch(error => console.error(error))
+
+    const posts = await prisma.post
+    .findMany()
+        .then(results => {
+            body.posts = results;
+    })
+    .catch(error => console.error(error));
+
+    res.render('index.ejs', {body: body})
+})
 
 
-
-app.post('/users', (req, res) => {
-	usersCollection
-        .insertOne(req.body)
-        .then(result => {
-            res.redirect('/');
-}) .catch(error => console.log(error))})
+// app.post('/users', (req, res) => {
+     // usersCollection
+         // .insertOne(req.body)
+         // .then(result => {
+            // res.redirect('/');
+        // })
+        // .catch(error => console.log(error))
+// })
     
 app.put('/users', (req, res) => {
     usersCollection
@@ -51,7 +88,7 @@ app.put('/users', (req, res) => {
         }
 ) .then(result => {
     res.json('Success')
-    return res
+    return result
 }) .catch(error => console.error(error))})
 
 

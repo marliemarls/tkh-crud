@@ -12,16 +12,15 @@ deleteButton.addEventListener('click', () => {
         }),
     })
     .then(res => {
-        console.log('deleted')
+        console.log('deleted');
         if (res.ok) return res.json();
     })
-    .then(res =>{
-        window.location.reload(true)
-    })
-})
+    .then(res => {
+        window.location.reload(true);
+    });
+});
 
-
-update.addEventListener('click', _ => {
+update.addEventListener('click', () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -33,11 +32,12 @@ update.addEventListener('click', _ => {
             password: password
         }),
     })
-        .then(res => {
-            console.log(`main.js res`, JSON.stringify(res));
-            if (res.ok) return res.json();
-        })
-})      .then(res =>{
-    window.location.reload(true)
-})
+    .then(res => {
+        console.log(`main.js res`, JSON.stringify(res));
+        if (res.ok) return res.json();
+    })
+    .then(res => {
+        window.location.reload(true);
+    });
+});  
 
