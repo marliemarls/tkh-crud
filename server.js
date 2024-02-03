@@ -38,11 +38,6 @@ app.post('/users', (req, res) => {
     })  
 })
 
-MongoClient.connect(process.env.MONGO_URI)
-.then(client => {
-const db = client.db('practice');
-const usersCollection = db.collection('users');
-
 app.get('/', async (req, res) => {
     const body = { users: null, posts: null }    
 
@@ -63,6 +58,31 @@ app.get('/', async (req, res) => {
     res.render('index.ejs', {body: body})
 })
 
+MongoClient.connect(process.env.MONGO_URI)
+.then(client => {
+const db = client.db('practice');
+const usersCollection = db.collection('users');
+
+// app.get('/', async (req, res) => {
+//     const body = { users: null, posts: null }    
+
+//     const users = await prisma.user
+//     .findMany()
+//         .then(results => {
+//             body.users = results;
+//     })
+//     .catch(error => console.error(error))
+
+//     const posts = await prisma.post
+//     .findMany()
+//         .then(results => {
+//             body.posts = results;
+//     })
+//     .catch(error => console.error(error));
+
+//     res.render('index.ejs', {body: body})
+// })
+
 
 // app.post('/users', (req, res) => {
      // usersCollection
@@ -72,6 +92,8 @@ app.get('/', async (req, res) => {
         // })
         // .catch(error => console.log(error))
 // })
+    // .catch(error => console.error(error))
+
     
 app.put('/users', (req, res) => {
     usersCollection

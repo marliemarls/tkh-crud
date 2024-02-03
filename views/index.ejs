@@ -28,7 +28,15 @@
                 </li>
                 <% } %>
         </ul>
+        <form action="/posts" method="POST">
+            <input type="text" id="title" placeholder="Title" name="title">
+            <input type="text" id="body" placeholder="Body" name="body">
+            <button type="submit">Post</button>
+        </form>
+        <div>
+					<!-- add the posts object logic here -->
+					<!-- the posts should render here -->
+        </div>
         <script src="/main.js"></script>
     </body>
-
 </html>
