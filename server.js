@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient(); 
+
 const PORT = 3000;
 require('dotenv').config({ path: '.env' })
 
