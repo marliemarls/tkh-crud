@@ -4,8 +4,8 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient(); 
-
 const PORT = 3000;
+
 require('dotenv').config({ path: '.env' })
 
 
@@ -13,6 +13,9 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
+
+
+
 
 app.post('/users', (req, res) => {
     const {username, password} = req.body;
@@ -35,7 +38,7 @@ app.post('/users', (req, res) => {
         // Handle errors
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
-    })  
+    })
 })
 
 app.get('/', async (req, res) => {
@@ -57,6 +60,8 @@ app.get('/', async (req, res) => {
 
     res.render('index.ejs', {body: body})
 })
+
+
 
 MongoClient.connect(process.env.MONGO_URI)
 .then(client => {
