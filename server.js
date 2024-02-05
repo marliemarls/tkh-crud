@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 
 
-app.post('/users', (req, res) => {
+app.post('/users', async (req, res) => {
     const {username, password} = req.body;
     prisma.user.create({
         data: {
