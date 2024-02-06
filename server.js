@@ -19,29 +19,29 @@ app.use(bodyParser.json());
 
 
 
-app.post('/users', async (req, res) => {
+app.post('/users', (req, res) => {
     const {username, password} = req.body;
     prisma.user.create({
         data: {
             username,
             password,
-            post: {
+            posts: {
                 create: {
                     title: 'My first post',
                     body: 'Lots of really interesting stuff',
                 },
             },
         }
-    })
-    .then(result => {
+    }) .then(result => {
         res.redirect('/');
-    })
-    .catch(error => {
+    }) .catch(error => {
         // Handle errors
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
     })
 })
+
+
 
 app.get('/', async (req, res) => {
     const body = { users: null, posts: null }    
@@ -62,6 +62,7 @@ app.get('/', async (req, res) => {
 
     res.render('index.ejs', {body: body})
 })
+
 
 
 
@@ -120,20 +121,22 @@ app.put('/users', (req, res) => {
         }
 ) .then(result => {
     res.json('Success')
-    return result
+    return res
 }) .catch(error => console.error(error))})
 
 
 app.delete('/users', (req, res) => {
     usersCollection
         .deleteOne(
-        { username: req.body.username }
+            { username: req.body.username }
         )
         .then(result => {
-        console.log(`Deleted ${req.body.username}`)
-        console.log(result);
+            console.log(`Deleted ${req.body.username}`)
+            console.log(result);
             res.json('Deleted user')
-}) .catch(error => console.error(error))}) 
+        })
+        .catch(error => console.error(error))
+}) 
 
 }) 
 .catch(error => console.error(error))
