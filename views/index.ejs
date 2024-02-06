@@ -28,25 +28,26 @@
                 </li>
                 <% } %> 
         </ul>
-        <form action="/posts" method="POST">
+        <form action="/post" method="POST">
             <input type="text" id="title" placeholder="Title" name="title" />
             <input type="text" id="body" placeholder="Body" name="body" />
             <button type="submit">Post</button>
         </form>
         <div>
-            <% for(var i=0; i < body.posts.length; i++) {%>
-                <li class="posts">
+            <!-- <form action="/post" method="POST"> -->
+            <% for(var i=0; i < body.postnp; i++) {%>
+                <li class="post">
                     <!-- Output name from the iterated user object -->
                     <span>
-                        <%= body.posts[i].title %>
+                        <%= body.post[i].title %>
                     </span>:
                     <!-- Output quote from the iterated user object -->
                     <span>
-                        <%= body.posts[i].body %>
+                        <%= body.post[i].body %>
                     </span>
                 </li>
                 <% } %> 
-
+            <!-- </form> -->
 
         </div>
         <script src="/main.js"></script>
