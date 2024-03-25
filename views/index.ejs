@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Crud Assignment</title>
     </head>
     <body>
         <h1>Enter user</h1>
@@ -12,7 +12,7 @@
             <input type="password" id="password" placeholder="Password" name="password" />
             <button type="submit">Submit</button>
         </form>
-        <button id="update-button">Replace password</button>
+        <button id="update-button">Update password</button>
         <button id="delete-button">delete user</button>
         <ul class="users">
             <% for(var i=0; i < body.users.length; i++) {%>
@@ -29,6 +29,7 @@
                 <% } %>
         </ul>
         <form action="/posts" method="POST">
+            <input type="text" id="username" placeholder="Username" name="username" />
             <input type="text" id="title" placeholder="Title" name="title" />
             <input type="text" id="body" placeholder="Body" name="body" />
             <button type="submit">Post</button>

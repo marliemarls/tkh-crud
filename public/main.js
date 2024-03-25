@@ -36,8 +36,12 @@ update.addEventListener('click', () => {
         console.log(`main.js res`, JSON.stringify(res));
         if (res.ok) return res.json();
     })
-    .then(res => {
-        window.location.reload(true);
+    .then(result => {
+        const response = JSON.stringify(result);
+        console.log(response)
+        window.location.reload(true)
+        res.json('Success')
+        return response
     });
 });  
 

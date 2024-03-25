@@ -22,15 +22,16 @@ app.use(bodyParser.json());
 app.post('/users', (req, res) => {
     const {username, password} = req.body;
     prisma.user.create({
+        
         data: {
-            username,
-            password,
-            posts: {
-                create: {
-                    title: 'My first post',
-                    body: 'Lots of really interesting stuff',
-                },
-            },
+            username: username,
+            password: password,
+            // posts: {
+            //     create: {
+            //         title: 'My first post',
+            //         body: 'Lots of really interesting stuff',
+            //     },
+            // },
         }
     }) .then(result => {
         res.redirect('/');
@@ -41,6 +42,24 @@ app.post('/users', (req, res) => {
     })
 })
 
+app.post('/posts', (req, res) => {
+    const { username, title, body } = req.body;
+
+    const newPost = prisma.post.create({
+            data: {
+                title,
+                body,
+                userId: prisma.user.findUnique({
+                    where: {
+                        username: username
+                    }
+                })
+            }
+        });
+
+        res.status(201).json(newPost);
+ 
+});
 
 
 app.get('/', async (req, res) => {
@@ -68,8 +87,8 @@ app.get('/', async (req, res) => {
 
 MongoClient.connect(process.env.MONGO_URI)
 .then(client => {
-const db = client.db('practice');
-const usersCollection = db.collection('users');
+const db = client.db('users');
+const usersCollection = db.collection('User');
 
 // app.get('/', async (req, res) => {
 //     const body = { users: null, posts: null }    
@@ -121,7 +140,7 @@ app.put('/users', (req, res) => {
         }
 ) .then(result => {
     res.json('Success')
-    return res
+    return result
 }) .catch(error => console.error(error))})
 
 

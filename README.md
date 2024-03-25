@@ -59,4 +59,4 @@ This is an example of how to list things you need to use the software and how to
 [Express-url]: https://expressjs.com/
 [Nodemon-url]: https://www.npmjs.com/package/nodemon
 [MongoDB-url]: https://www.mongodb.com/
-[Prisma-url] : https://www.prisma.io/
+[Prisma-url]: https://www.prisma.io/docs/getting-started
