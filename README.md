@@ -1,7 +1,7 @@
 # tkh-crud
 
 ## About The Project
- `marliemarls`, `tkh-crud`, `https://www.linkedin.com/in/marliemart/`, `https://github.com/marliemarls/tkh-crud`, `CRUD - Read`, `simple app that stores database of users info and posts using npm`
+ `marliemarls`, `tkh-crud`, `https://www.linkedin.com/in/marliemart/`, `https://github.com/marliemarls/tkh-crud`, `CRUD Application`, `simple app that stores database of users info and posts using npm`, `Nodemon`, `Prisma`, `NoSQL`, `MongoDB`, `Prisma`, `PrismaClient`
 
 
 
@@ -18,7 +18,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is a set of instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
+This is my simple CRUD Application. Built with Express, Prisma, MongoDB, and Nodemon.
 
 ### Prerequisites
 
